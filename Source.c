@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <time.h>
+#include <locale.h>
+#include <string.h>
+
+#define W 80
+
+void print_center(const char* s) {
+    char line[W + 1];
+    int len = strlen(s);
+    int pos = (W - len) / 2;
+
+    for (int i = 0; i < W; i++)
+        line[i] = '*';
+
+    for (int i = 0; i < len; i++)
+        line[pos + i] = s[i];
+
+    line[W] = '\0';
+    puts(line);
+}
+
+int main() {
+    setlocale(LC_ALL, "RUS");
+
+    struct tm* t;
+    time_t now;
+    char buf[200];
+
+    const char* week[] = {
+        "Воскресенье","Понедельник","Вторник",
+        "Среда","Четверг","Пятница","Суббота"
+    };
+
+    const char* month[] = {
+        "Января","Февраля","Марта","Апреля","Мая","Июня",
+        "Июля","Августа","Сентября","Октября","Ноября","Декабря"
+    };
+
+    const char* roman[] = {
+        "I","II","III","IV","V","VI",
+        "VII","VIII","IX","X","XI","XII"
+    };
+
+    const char* season[] = { "Зима", "Весна", "Лето", "Осень" };
+
+    now = time(NULL);
+    t = localtime(&now);
+
+    print_center("ТЕКУЩЕЕ ВРЕМЯ");
+
+    sprintf(buf, "Время: %02d:%02d:%02d",
+        t->tm_hour, t->tm_min, t->tm_sec);
+    print_center(buf);
+
+    sprintf(buf, "День недели: %s", week[t->tm_wday]);
+    print_center(buf);
+
+    sprintf(buf, "Дата: %02d.%02d.%d",
+        t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
+    print_center(buf);
+
+    sprintf(buf, "%d %s", t->tm_mday, month[t->tm_mon]);
+    print_center(buf);
+
+    sprintf(buf, "Сегодня %d-й день года", t->tm_yday + 1);
+    print_center(buf);
+
+    sprintf(buf, "До воскресенья %d дней",
+        (7 - t->tm_wday) % 7);
+    print_center(buf);
+
+    sprintf(buf, "С первой пары прошло %d часов",
+        t->tm_hour > 8 ? t->tm_hour - 8 : 0);
+    print_center(buf);
+
+    sprintf(buf, "До Нового года %d месяцев",
+        11 - t->tm_mon);
+    print_center(buf);
+
+    sprintf(buf, "До конца пары %d минут",
+        90 - (t->tm_min % 90));
+    print_center(buf);
+
+    sprintf(buf, "Месяц %s %d",
+        roman[t->tm_mon], t->tm_year + 1900);
+    print_center(buf);
+
+    sprintf(buf, "Время года: %s",
+        season[t->tm_mon / 3]);
+    print_center(buf);
+
+    sprintf(buf, "Идет %d день %s",
+        t->tm_yday % 90 + 1, season[t->tm_mon / 3]);
+    print_center(buf);
+
+    return 0;
+}
