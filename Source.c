@@ -28,13 +28,13 @@ int main() {
     char buf[200];
 
     const char* week[] = {
-        "Âîñêðåñåíüå","Ïîíåäåëüíèê","Âòîðíèê",
-        "Ñðåäà","×åòâåðã","Ïÿòíèöà","Ñóááîòà"
+        "Ð’Ð¾ÑÐºÑ€ÐµÑÐµÐ½ÑŒÐµ","ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº","Ð’Ñ‚Ð¾Ñ€Ð½Ð¸Ðº",
+        "Ð¡Ñ€ÐµÐ´Ð°","Ð§ÐµÑ‚Ð²ÐµÑ€Ð³","ÐŸÑÑ‚Ð½Ð¸Ñ†Ð°","Ð¡ÑƒÐ±Ð±Ð¾Ñ‚Ð°"
     };
 
     const char* month[] = {
-        "ßíâàðÿ","Ôåâðàëÿ","Ìàðòà","Àïðåëÿ","Ìàÿ","Èþíÿ",
-        "Èþëÿ","Àâãóñòà","Ñåíòÿáðÿ","Îêòÿáðÿ","Íîÿáðÿ","Äåêàáðÿ"
+        "Ð¯Ð½Ð²Ð°Ñ€Ñ","Ð¤ÐµÐ²Ñ€Ð°Ð»Ñ","ÐœÐ°Ñ€Ñ‚Ð°","ÐÐ¿Ñ€ÐµÐ»Ñ","ÐœÐ°Ñ","Ð˜ÑŽÐ½Ñ",
+        "Ð˜ÑŽÐ»Ñ","ÐÐ²Ð³ÑƒÑÑ‚Ð°","Ð¡ÐµÐ½Ñ‚ÑÐ±Ñ€Ñ","ÐžÐºÑ‚ÑÐ±Ñ€Ñ","ÐÐ¾ÑÐ±Ñ€Ñ","Ð”ÐµÐºÐ°Ð±Ñ€Ñ"
     };
 
     const char* roman[] = {
@@ -42,55 +42,55 @@ int main() {
         "VII","VIII","IX","X","XI","XII"
     };
 
-    const char* season[] = { "Çèìà", "Âåñíà", "Ëåòî", "Îñåíü" };
+    const char* season[] = { "Ð—Ð¸Ð¼Ð°", "Ð’ÐµÑÐ½Ð°", "Ð›ÐµÑ‚Ð¾", "ÐžÑÐµÐ½ÑŒ" };
 
     now = time(NULL);
     t = localtime(&now);
 
-    print_center("ÒÅÊÓÙÅÅ ÂÐÅÌß");
+    print_center("Ð¢Ð•ÐšÐ£Ð©Ð•Ð• Ð’Ð Ð•ÐœÐ¯");
 
-    sprintf(buf, "Âðåìÿ: %02d:%02d:%02d",
+    sprintf(buf, "Ð’Ñ€ÐµÐ¼Ñ: %02d:%02d:%02d",
         t->tm_hour, t->tm_min, t->tm_sec);
     print_center(buf);
 
-    sprintf(buf, "Äåíü íåäåëè: %s", week[t->tm_wday]);
+    sprintf(buf, "Ð”ÐµÐ½ÑŒ Ð½ÐµÐ´ÐµÐ»Ð¸: %s", week[t->tm_wday]);
     print_center(buf);
 
-    sprintf(buf, "Äàòà: %02d.%02d.%d",
+    sprintf(buf, "Ð”Ð°Ñ‚Ð°: %02d.%02d.%d",
         t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
     print_center(buf);
 
     sprintf(buf, "%d %s", t->tm_mday, month[t->tm_mon]);
     print_center(buf);
 
-    sprintf(buf, "Ñåãîäíÿ %d-é äåíü ãîäà", t->tm_yday + 1);
+    sprintf(buf, "Ð¡ÐµÐ³Ð¾Ð´Ð½Ñ %d-Ð¹ Ð´ÐµÐ½ÑŒ Ð³Ð¾Ð´Ð°", t->tm_yday + 1);
     print_center(buf);
 
-    sprintf(buf, "Äî âîñêðåñåíüÿ %d äíåé",
+    sprintf(buf, "Ð”Ð¾ Ð²Ð¾ÑÐºÑ€ÐµÑÐµÐ½ÑŒÑ %d Ð´Ð½ÐµÐ¹",
         (7 - t->tm_wday) % 7);
     print_center(buf);
 
-    sprintf(buf, "Ñ ïåðâîé ïàðû ïðîøëî %d ÷àñîâ",
+    sprintf(buf, "Ð¡ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð¿Ð°Ñ€Ñ‹ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾ %d Ñ‡Ð°ÑÐ¾Ð²",
         t->tm_hour > 8 ? t->tm_hour - 8 : 0);
     print_center(buf);
 
-    sprintf(buf, "Äî Íîâîãî ãîäà %d ìåñÿöåâ",
+    sprintf(buf, "Ð”Ð¾ ÐÐ¾Ð²Ð¾Ð³Ð¾ Ð³Ð¾Ð´Ð° %d Ð¼ÐµÑÑÑ†ÐµÐ²",
         11 - t->tm_mon);
     print_center(buf);
 
-    sprintf(buf, "Äî êîíöà ïàðû %d ìèíóò",
+    sprintf(buf, "Ð”Ð¾ ÐºÐ¾Ð½Ñ†Ð° Ð¿Ð°Ñ€Ñ‹ %d Ð¼Ð¸Ð½ÑƒÑ‚",
         90 - (t->tm_min % 90));
     print_center(buf);
 
-    sprintf(buf, "Ìåñÿö %s %d",
+    sprintf(buf, "ÐœÐµÑÑÑ† %s %d",
         roman[t->tm_mon], t->tm_year + 1900);
     print_center(buf);
 
-    sprintf(buf, "Âðåìÿ ãîäà: %s",
+    sprintf(buf, "Ð’Ñ€ÐµÐ¼Ñ Ð³Ð¾Ð´Ð°: %s",
         season[t->tm_mon / 3]);
     print_center(buf);
 
-    sprintf(buf, "Èäåò %d äåíü %s",
+    sprintf(buf, "Ð˜Ð´ÐµÑ‚ %d Ð´ÐµÐ½ÑŒ %s",
         t->tm_yday % 90 + 1, season[t->tm_mon / 3]);
     print_center(buf);
 
